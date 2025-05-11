@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="tr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Anneler Günü Mektubu</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet">
+    <style>
+      .handwriting {
+        font-family: 'Pacifico', cursive;
+      }
+
+      .letter {
+        opacity: 0;
+        transform: translateY(20px);
+        transition: all 0.8s ease;
+      }
+
+      .show {
+        opacity: 1 !important;
+        transform: translateY(0) !important;
+      }
+
+      /* Çiçek animasyonu */
+      .petal {
+        position: fixed;
+        top: -50px;
+        width: 30px;
+        height: 30px;
+        background-image: url('https://cdn-icons-png.flaticon.com/512/2950/2950314.png' );
+        background-size: contain;
+        background-repeat: no-repeat;
+        animation: fall 10s linear infinite;
+        opacity: 0.7;
+        z-index: 0;
+      }
+
+      @keyframes fall {
+        0% {
+          transform: translateY(-100px) rotate(0deg);
+        }
+        100% {
+          transform: translateY(120vh) rotate(360deg);
+        }
+      }
+    </style>
+  </head>
+  <body class="bg-pink-100 min-h-screen flex items-center justify-center p-4 overflow-hidden">
+    
+    <!-- Çiçek yaprakları -->
+    <div id="petals-container"></div>
+
+    <div class="text-center z-10">
+      <button id="heartButton" class="text-4xl bg-pink-400 text-white p-4 rounded-full hover:bg-pink-500 transition-all">
+        ❤️
+      </button>
+
+      <div id="letter" class="max-w-xl mt-6 bg-white p-6 rounded-xl shadow-xl text-gray-800 handwriting letter text-lg leading-relaxed">
+        <h2 class="text-2xl text-pink-600 font-bold text-center mb-4">Anneler Günün Kutlu Olsun! ❤️</h2>
+        <p class="mb-4">Sevgili Annem,</p>
+        <p class="mb-4">
+          Bugün senin günün anneciğim. Bize sevgiyle, sabırla ve fedakârlıkla (filmlerdeki gibi) her şeyi öğrettin.
+          Teşekkür ederim anneciğim; zor günlerde sığınak olduğun, yorgunluğun içinde bile bize hediye ettiğin her bir gülümseme 
+          ve her zaman ilham veren gücün için.
+        </p>
+        <p class="mb-4">
+          Bu dünyada senin fedakârlığın ve kalbinle kıyaslanacak hiçbir şey yok. Bugün ve her zaman seni onurlandırıyor ve her şey için teşekkür ediyorum. 
+          Hayatımı daha iyi bir sürüm haline getirdiğin için teşekkür ederim. Hatasız (belki birkaç küçük hata var ama hepsi çok tatlı).
+        </p>
+        <p class="mb-4">Anneler Günün Kutlu Olsun, benim güvenli limanım.</p>
+        <p class="text-right italic">Bolca kalp (ve sevgiyle),</p>
+        <div class="bg-pink-50 p-3 mt-4 rounded text-sm font-mono">
+          "Hayat verdiğin için teşekkür ederim anne, seni çok seviyorum anne ❤️."
+        </div>
+      </div>
+    </div>
+
+    <script>
+      const button = document.getElementById("heartButton");
+      const letter = document.getElementById("letter");
+
+      button.addEventListener("click", () => {
+        letter.classList.add("show");
+      });
+
+      // Çiçek yaprağı üret
+      const petalCount = 30;
+      const container = document.getElementById("petals-container");
+
+      for (let i = 0; i < petalCount; i++) {
+        const petal = document.createElement("div");
+        petal.className = "petal";
+        petal.style.left = `${Math.random() * 100}vw`;
+        petal.style.animationDelay = `${Math.random() * 10}s`;
+        petal.style.animationDuration = `${5 + Math.random() * 5}s`;
+        container.appendChild(petal);
+      }
+    </script>
+  </body>
+</html>
